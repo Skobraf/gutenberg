@@ -4,7 +4,6 @@
 import { compose } from '@wordpress/element';
 import { withSelect } from '@wordpress/data';
 import { withViewportMatch } from '@wordpress/viewport';
-import { GuideTip } from '@wordpress/nux';
 
 /**
  * WordPress dependencies
@@ -31,11 +30,7 @@ function HeaderToolbar( { hasFixedToolbar, isLargeViewport } ) {
 			className="edit-post-header-toolbar"
 			aria-label={ __( 'Editor Toolbar' ) }
 		>
-			<Inserter position="bottom right">
-				<GuideTip guideID="core/editor" step={ 1 }>
-					{ __( 'Welcome to the wonderful world of blocks! Click ‘Add block’ to insert different kinds of content—text, images, quotes, video, lists, and much more.' ) }
-				</GuideTip>
-			</Inserter>
+			<Inserter position="bottom right" />
 			<EditorHistoryUndo />
 			<EditorHistoryRedo />
 			<TableOfContents />

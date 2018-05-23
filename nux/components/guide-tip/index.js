@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import { defer } from 'lodash';
+
+/**
  * WordPress dependencies
  */
 import { Component, createRef, compose } from '@wordpress/element';
@@ -17,6 +22,8 @@ export class GuideTip extends Component {
 	constructor() {
 		super( ...arguments );
 
+		this.setPosition = this.setPosition.bind( this );
+
 		this.anchorRef = createRef();
 		this.advanceButtonRef = createRef();
 
@@ -27,7 +34,7 @@ export class GuideTip extends Component {
 	}
 
 	componentDidMount() {
-		this.setPosition();
+		defer( this.setPosition );
 	}
 
 	componentDidUpdate( prevProps ) {

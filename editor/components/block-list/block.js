@@ -28,6 +28,7 @@ import { withFilters } from '@wordpress/components';
 import { __, sprintf } from '@wordpress/i18n';
 import { withDispatch, withSelect } from '@wordpress/data';
 import { withViewportMatch } from '@wordpress/viewport';
+import { GuideTip } from '@wordpress/nux';
 
 /**
  * Internal dependencies
@@ -412,6 +413,7 @@ export class BlockListBlock extends Component {
 			isMultiSelecting,
 			hoverArea,
 			isLargeViewport,
+			currentGuideStep,
 		} = this.props;
 		const isHovered = this.state.isHovered && ! isMultiSelecting;
 		const { name: blockName, isValid } = block;
@@ -425,7 +427,8 @@ export class BlockListBlock extends Component {
 		// Empty paragraph blocks should always show up as unselected.
 		const isEmptyDefaultBlock = isUnmodifiedDefaultBlock( block );
 		const isSelectedNotTyping = isSelected && ! isTypingWithinBlock;
-		const showEmptyBlockSideInserter = ( isSelected || isHovered ) && isEmptyDefaultBlock;
+		const hasGuideTip = currentGuideStep === 1;
+		const showEmptyBlockSideInserter = ( isSelected || isHovered || hasGuideTip ) && isEmptyDefaultBlock;
 		const shouldAppearSelected = ! showEmptyBlockSideInserter && isSelectedNotTyping;
 		// We render block movers and block settings to keep them tabbale even if hidden
 		const shouldRenderMovers = ( isSelected || hoverArea === 'left' ) && ! showEmptyBlockSideInserter && ! isMultiSelecting && ! isMultiSelected && ! isTypingWithinBlock;
@@ -596,7 +599,11 @@ export class BlockListBlock extends Component {
 							<Inserter
 								position="top right"
 								onToggle={ this.selectOnOpen }
-							/>
+							>
+								<GuideTip guideID="core/editor" step={ 1 }>
+									{ __( 'Welcome to the wonderful world of blocks! Click ‘Add block’ to insert different kinds of content—text, images, quotes, video, lists, and much more.' ) }
+								</GuideTip>
+							</Inserter>
 						</div>
 					</Fragment>
 				) }
@@ -624,6 +631,9 @@ const applyWithSelect = withSelect( ( select, { uid, rootUID } ) => {
 		getBlockSelectionEnd,
 		getEditorSettings,
 	} = select( 'core/editor' );
+
+	const { getCurrentGuideStep } = select( 'core/nux' );
+
 	const isSelected = isBlockSelected( uid );
 	const { templateLock, hasFixedToolbar } = getEditorSettings();
 
@@ -646,6 +656,7 @@ const applyWithSelect = withSelect( ( select, { uid, rootUID } ) => {
 		isSelected,
 		isLocked: !! templateLock,
 		hasFixedToolbar,
+		currentGuideStep: getCurrentGuideStep( 'core/editor' ),
 	};
 } );
 
