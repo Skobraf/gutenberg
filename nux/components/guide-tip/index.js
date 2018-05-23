@@ -74,13 +74,13 @@ export class GuideTip extends Component {
 			<span ref={ this.anchorRef }>
 				<Fill>
 					<div
-						className={ `editor-new-user-tip is-${ direction }` }
+						className={ `editor-guide-tip is-${ direction }` }
 						style={ position }
 						role="dialog"
 						aria-modal="true"
 						aria-label={ __( 'New User Guide' ) }
 					>
-						<div className="editor-new-user-tip__content">
+						<div className="editor-guide-tip__content">
 							<p>{ children }</p>
 							<p>
 								<Button
@@ -94,7 +94,7 @@ export class GuideTip extends Component {
 							<IconButton
 								icon="no-alt"
 								label={ __( 'Dismiss guide' ) }
-								className="editor-new-user-tip__close"
+								className="editor-guide-tip__close"
 								onClick={ onDismiss }
 							/>
 						</div>

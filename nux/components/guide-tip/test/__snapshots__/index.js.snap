@@ -6,12 +6,12 @@ exports[`GuideTip should render correctly 1`] = `
     <div
       aria-label="New User Guide"
       aria-modal="true"
-      className="editor-new-user-tip is-right"
+      className="editor-guide-tip is-right"
       role="dialog"
       style={Object {}}
     >
       <div
-        className="editor-new-user-tip__content"
+        className="editor-guide-tip__content"
       >
         <p>
           It looks like you’re writing a letter. Would you like help?
@@ -24,7 +24,7 @@ exports[`GuideTip should render correctly 1`] = `
           </Button>
         </p>
         <IconButton
-          className="editor-new-user-tip__close"
+          className="editor-guide-tip__close"
           icon="no-alt"
           label="Dismiss guide"
         />
