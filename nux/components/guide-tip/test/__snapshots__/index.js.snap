@@ -18,10 +18,9 @@ exports[`GuideTip should render correctly 1`] = `
         </p>
         <p>
           <Button
-            isLarge={true}
-            isPrimary={true}
+            isLink={true}
           >
-            Got it
+            Tell me more!
           </Button>
         </p>
         <IconButton

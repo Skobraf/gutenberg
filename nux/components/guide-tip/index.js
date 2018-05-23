@@ -85,11 +85,10 @@ export class GuideTip extends Component {
 							<p>
 								<Button
 									ref={ this.advanceButtonRef }
-									isLarge
-									isPrimary
+									isLink
 									onClick={ onAdvance }
 								>
-									{ __( 'Got it' ) }
+									{ __( 'Tell me more!' ) }
 								</Button>
 							</p>
 							<IconButton

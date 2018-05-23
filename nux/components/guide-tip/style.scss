@@ -80,7 +80,7 @@
 			margin-top: auto;
 			position: absolute;
 			right: auto;
-			top: -50px;
+			top: -20px;
 			width: 350px;
 		}
 
@@ -94,6 +94,12 @@
 			.editor-new-user-tip__content {
 				left: $indicator-spacing + $content-spacing;
 			}
+		}
+	}
+
+	@include break-small {
+		.editor-new-user-tip__content {
+			width: 450px;
 		}
 	}
 }
